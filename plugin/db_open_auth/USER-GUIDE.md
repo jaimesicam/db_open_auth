@@ -20,11 +20,7 @@ For architecture and validation rules, see [DESIGN-db_open_auth_gssapi.md](DESIG
 
 Use `SET PERSIST` or `SET GLOBAL` according to your Percona Server policy when changing the `*_log` options (for example `SET GLOBAL db_open_auth_gssapi_log = ON`).
 
-### 1.1 Doubled variable names (e.g. `db_open_auth_gssapi_db_open_auth_gssapi_keytab`)
-
-That pattern means the server loaded a **plugin built from older sources** where each sysvar macro still included the `db_open_auth_*_` prefix (MySQL then prefixes again by plugin name). Rebuild **mysqld** and the `db_open_auth_*.so` files from a current tree: the exposed names should match the **GSSAPI** and **OIDC** variables listed in the table above.
-
-### 1.2 Client plugin files on disk
+### 1.1 Client plugin files on disk
 
 You should see **four** modules under the server plugin directory (for example `/usr/lib64/mysql/plugin/`):
 
